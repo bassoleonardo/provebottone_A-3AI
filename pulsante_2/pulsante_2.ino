@@ -17,13 +17,13 @@ void loop() {
   digitalWrite(led1, HIGH);
   while(btn_status == LOW)
   btn_status = digitalRead(pushBottone);
+  tempo_bottone = millis();
   if(btn_status == HIGH)
   {
     digitalWrite(led1, LOW);
   }
-  btn_status = LOW;
-  tempo_bottone = millis(btn_status == HIGH);
   tempo_riflesso = tempo_bottone - tempo_random;
+  btn_status = LOW;
   Serial.println("hai premuto correttamente il pulsante dopo: " + tempo_riflesso);
   while(Serial.available() == 0);
   delay(1000);
