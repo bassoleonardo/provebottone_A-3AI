@@ -1,7 +1,7 @@
 int led1 = 8; // si definisce il led e lo si assegna ad un determinato PIN
 int pushBottone = 9; // si definisce il bottone 
 int btn_status = 0; // si usa come variabile per indicare se il pulsante si premuto o meno e si utilizzerà nel corso del codice.
-int tempo_random = 0;
+long tempo_random;
 unsigned long tempo_bottone = 0;
 unsigned long tempo_riflesso = 0;
 void setup() {
@@ -14,7 +14,7 @@ Serial.begin(9600);
 void loop() {
   tempo_random = random(2000, 10000);
   delay(tempo_random);
-  tempo_random = millis(); // parte a contare i millisecondi necessari ad accendere il led econtinua fino al push del bottone.
+  tempo_random = millis();// parte a contare i millisecondi necessari ad accendere il led econtinua fino al push del bottone.
   digitalWrite(led1, HIGH);
   while(btn_status == LOW)
   btn_status = digitalRead(pushBottone);
@@ -26,8 +26,6 @@ void loop() {
   btn_status = LOW;
   tempo_bottone = millis(); // restituisce i millisecondi necessari al led per essere spento dal bottone 
   tempo_riflesso = tempo_bottone - tempo_random;
-  tempo_bottone = millis();
-  Serial.println("questi sono i tempi ");
   Serial.println("tempo random: ");
   Serial.println(tempo_random);
   Serial.println("tempo del push del bottone:  ");
