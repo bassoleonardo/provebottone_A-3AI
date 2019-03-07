@@ -1,5 +1,5 @@
 int led1 = 8; // si definisce il led e lo si assegna ad un determinato PIN
-int pushBottone = 7; // si definisce il bottone 
+int pushBottone = 9; // si definisce il bottone 
 int btn_status = 0; // si usa come variabile per indicare se il pulsante si premuto o meno e si utilizzerà nel corso del codice.
 int tempo_random = 0;
 int tempo_bottone = 0;
@@ -17,12 +17,10 @@ void loop() {
   digitalWrite(led1, HIGH);
   while(btn_status == LOW)
   btn_status = digitalRead(pushBottone);
-  tempo_bottone = millis();
   if(btn_status == HIGH)
   {
     digitalWrite(led1, LOW);
   }
-  tempo_riflesso = tempo_bottone - tempo_random;
   btn_status = LOW;
   Serial.println("hai premuto correttamente il pulsante dopo: " + tempo_riflesso);
   while(Serial.available() == 0);
