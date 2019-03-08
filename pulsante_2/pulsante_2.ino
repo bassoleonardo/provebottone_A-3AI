@@ -14,7 +14,7 @@ Serial.begin(9600);
 }
 
 void loop() { 
-  digitalWrite(beep, LOW);
+  
   Serial.println("INIZIO");
   tempo_random = random(2000, 10000); // genera un tempo random
   delay(tempo_random);// parte a contare i millisecondi necessari ad accendere il led econtinua fino al push del bottone.                      
@@ -25,11 +25,7 @@ void loop() {
   
   btn_status = digitalRead(pushBottone);
   long tempo_bottone = millis(); // restituisce i millisecondi necessari al led per essere spento dal bottone 
-  if(btn_status == HIGH)
-  {
-    digitalWrite(led1, LOW);
-    btn_status = LOW;
-  }
+  check(led1);
   tempo_riflesso = tempo_bottone - tempo_led;
   Serial.println("Hai premuto il bottone dopo: ");
   Serial.println(tempo_riflesso);
@@ -39,18 +35,22 @@ void loop() {
   long tempo_buzzer = millis();
 
   while(btn_status == LOW)
+  
   btn_status = digitalRead(pushBottone);
   long tempo_bottone2 = millis();
-  if(btn_status == HIGH)
-  {
-    digitalWrite(beep, LOW);
-    btn_status = LOW;  
-  }
-  tempo_riflesso_buzzer = tempo_bottone2 - (tempo_led + tempo_buzzer);
+  check(beep);
+  tempo_riflesso_buzzer = tempo_bottone2 - tempo_buzzer;
   Serial.println("Hai premuto il bottone (con il buzzer) dopo: ");
   Serial.println(tempo_riflesso_buzzer);
   Serial.println("per restartare premere invio...");
   while(Serial.available() == 0);
   Serial.println("----------------------------------------");
-  tempo_bottone = 0;
 }
+
+void check(int a){
+    if(btn_status == HIGH)
+    {
+      digitalWrite(a, LOW);
+      btn_status = LOW;  
+    }
+  }
