@@ -1,9 +1,9 @@
 #include <LiquidCrystal.h>
 
-
-int pushBottone = 3; // input del BOTTONE
-int led1 = 4; // LED
-int beep = 5 ; 
+LiquidCrystal lcd(8, 9, 10, 11, 12, 13);
+int pushBottone = 2; // input del BOTTONE
+int led1 = 3; // LED
+int beep = 4 ; 
 int btn_status = 0; // si usa come variabile per indicare se il pulsante si premuto o meno e si utilizzerà nel corso del codice. (status del BOTTONE)
 int tempo_random; // tempo RANDOM
 int tempo_riflesso; // tempo del riflesso del LED
@@ -15,10 +15,11 @@ pinMode(led1, OUTPUT);
 pinMode(pushBottone, INPUT);
 pinMode(beep, OUTPUT);
 Serial.begin(9600);
+lcd.begin(16, 2);
 }
 
 void loop() { 
-  
+  lcd.clear();
   Serial.println("INIZIO (i tempi sono misurati in millisecondi)...");
   tempo_random = random(2000, 10000); 
   delay(tempo_random);                  
@@ -32,6 +33,8 @@ void loop() {
   tempo_riflesso = tempo_bottone - tempo_led;
   Serial.println("Hai premuto il bottone dopo: ");
   Serial.println(tempo_riflesso);
+  lcd.setCursor(0, 0);
+  lcd.print(tempo_riflesso);
   
   tempo_random = random(2000, 10000);
   delay(tempo_random);
@@ -45,6 +48,8 @@ void loop() {
   tempo_riflesso_buzzer = tempo_bottone2 - tempo_buzzer;
   Serial.println("Hai premuto il bottone (con il buzzer) dopo: ");
   Serial.println(tempo_riflesso_buzzer);
+  lcd.setCursor(0, 1);
+  lcd.print(tempo_riflesso_buzzer);
   Serial.println("premere invio per iniziare: ");
   while(Serial.available() == 0);
   Serial.println("-----------------");
