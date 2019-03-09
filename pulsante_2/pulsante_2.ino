@@ -1,6 +1,9 @@
-int pushBottone = 13; // input del BOTTONE
-int led1 = 12; // LED
-int beep = 11; 
+#include <LiquidCrystal.h>
+
+
+int pushBottone = 3; // input del BOTTONE
+int led1 = 4; // LED
+int beep = 5 ; 
 int btn_status = 0; // si usa come variabile per indicare se il pulsante si premuto o meno e si utilizzerà nel corso del codice. (status del BOTTONE)
 int tempo_random; // tempo RANDOM
 int tempo_riflesso; // tempo del riflesso del LED
