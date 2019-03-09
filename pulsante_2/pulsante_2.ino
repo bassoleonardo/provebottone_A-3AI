@@ -16,7 +16,7 @@ Serial.begin(9600);
 
 void loop() { 
   
-  Serial.println("INIZIO (i tempi sono misurati in millisecondi...");
+  Serial.println("INIZIO (i tempi sono misurati in millisecondi)...");
   tempo_random = random(2000, 10000); 
   delay(tempo_random);                  
   digitalWrite(led1, HIGH); 
@@ -42,9 +42,9 @@ void loop() {
   tempo_riflesso_buzzer = tempo_bottone2 - tempo_buzzer;
   Serial.println("Hai premuto il bottone (con il buzzer) dopo: ");
   Serial.println(tempo_riflesso_buzzer);
-  Serial.println("per restartare premere invio...");
+  Serial.println("premere invio per iniziare: ");
   while(Serial.available() == 0);
-  Serial.println("----------------------------------------");
+  Serial.println("-----------------");
 }
 
 void check(int a){
