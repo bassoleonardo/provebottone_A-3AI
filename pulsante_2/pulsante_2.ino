@@ -57,6 +57,8 @@ void loop() {
   Serial.println(tempo_riflesso_buzzer);
   lcd.setCursor(0, 1);
   lcd.print(tempo_riflesso_buzzer);
+
+  // --------- SEZIONE DEDICATA AL PULSANTE DI RESTART --------- //
   Serial.println("premere il bottone di restart per iniziare: ");
   while(btn_status == LOW)
   btn_status = digitalRead(pushBottone_restart);
