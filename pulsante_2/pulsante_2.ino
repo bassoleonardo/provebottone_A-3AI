@@ -44,6 +44,8 @@ void loop() {
   Serial.println(tempo_riflesso);
   lcd.setCursor(0, 0);
   lcd.print(tempo_riflesso);
+  lcd.setCursor(14, 0);
+  lcd.print("ms");
 
   // --------- SEZIONE DEDICATA AL BUZZER --------- //
   tempo_random = random(2000, 10000);
@@ -60,6 +62,8 @@ void loop() {
   Serial.println(tempo_riflesso_buzzer);
   lcd.setCursor(0, 1);
   lcd.print(tempo_riflesso_buzzer);
+  lcd.setCursor(14, 1);
+  lcd.print("ms");
 
   // --------- SEZIONE DEDICATA AL PULSANTE DI RESTART --------- //
   Serial.println("premere il bottone di restart per iniziare: ");
