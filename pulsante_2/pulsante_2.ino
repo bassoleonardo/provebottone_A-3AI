@@ -40,13 +40,10 @@ void loop() {
   long tempo_bottone = millis(); // restituisce il push del bottone
   check(led1);
   tempo_riflesso = tempo_bottone - tempo_led;
-  Serial.println("Hai premuto il bottone dopo: ");
-  Serial.println(tempo_riflesso);
   lcd.setCursor(0, 0);
   lcd.print(tempo_riflesso);
-  lcd.setCursor(14, 0);
   lcd.print("ms");
-
+  lcd.print(" ");
   // --------- SEZIONE DEDICATA AL BUZZER --------- //
   tempo_random = random(2000, 10000);
   delay(tempo_random);
@@ -58,15 +55,18 @@ void loop() {
   long tempo_bottone2 = millis(); // restituisce il push del bottone
   check(beep);
   tempo_riflesso_buzzer = tempo_bottone2 - tempo_buzzer;
-  Serial.println("Hai premuto il bottone (con il buzzer) dopo: ");
-  Serial.println(tempo_riflesso_buzzer);
-  lcd.setCursor(0, 1);
   lcd.print(tempo_riflesso_buzzer);
-  lcd.setCursor(14, 1);
-  lcd.print("ms");
-
+  lcd.print("ms ");
+  lcd.setCursor(0, 1);
+  if((tempo_riflesso + tempo_riflesso)/2 < 250)
+  {
+    lcd.print("POSITIVO");
+    }
+    else
+    {
+      lcd.print("NEGATIVO");
+      }
   // --------- SEZIONE DEDICATA AL PULSANTE DI RESTART --------- //
-  Serial.println("premere il bottone di restart per iniziare: ");
   while(btn_status == HIGH)
   btn_status = digitalRead(pushBottone_restart);
   Serial.println();
